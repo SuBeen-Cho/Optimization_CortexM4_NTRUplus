@@ -16,7 +16,7 @@ NTRU+ is an NTT-friendly lattice-based KEM. This repository reports the performa
 
 ## Benchmark Setup
 
-Measurements were taken with pqm4 (commit a24bb4b), a PQC benchmarking framework for ARM Cortex-M4. The target board is the NUCLEO-L4R5ZI (STM32L4R5, Cortex-M4F); the compiler is arm-none-eabi-gcc 15.2 with -O3. Flashing and serial communication use OpenOCD 0.12 and the ST-Link virtual COM port.
+Measurements were taken with [pqm4](https://github.com/mupq/pqm4) (commit a24bb4b), a PQC benchmarking framework for ARM Cortex-M4. The target board is the NUCLEO-L4R5ZI (STM32L4R5, Cortex-M4F); the compiler is arm-none-eabi-gcc 15.2 with -O3. Flashing and serial communication use OpenOCD 0.12 and the ST-Link virtual COM port.
 
 randombytes uses the STM32 on-chip hardware TRNG provided by pqm4, and the hash functions (SHAKE, SHA-2) use pqm4's shared assembly implementation across all variants. The measured differences between variants therefore come only from the NTT and the memory layout.
 
