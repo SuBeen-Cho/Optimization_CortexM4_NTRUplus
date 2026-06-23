@@ -1,6 +1,6 @@
 # NTRU+ KEM on ARM Cortex-M4: Optimized Implementation and Benchmarks
 
-Optimized implementations of NTRU+KEM (768/864/1152) on ARM Cortex-M4, with cycle and stack benchmarks measured under pqm4.
+Optimized implementations of NTRU+KEM (768/864/1152) on ARM Cortex-M4, with cycle and stack benchmarks measured under [pqm4](https://github.com/mupq/pqm4).
 
 Source code will be added later; this repository currently provides the benchmark results only. The implementation folders (clean, m4opt, m4opt_mem) under each KEM are placeholders.
 
