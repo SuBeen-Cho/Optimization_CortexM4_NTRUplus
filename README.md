@@ -19,7 +19,7 @@ NTRU+ is an NTT-friendly lattice-based KEM. This repository reports the performa
 | Item | Value |
 |---|---|
 | Algorithm | NTRU+KEM 768 / 864 / 1152 |
-| Benchmark framework | [pqm4](https://github.com/mupq/pqm4) (commit a24bb4b) |
+| Benchmark framework | [pqm4](https://github.com/mupq/pqm4) |
 | Board (MCU) | NUCLEO-L4R5ZI (STM32L4R5, ARM Cortex-M4F) |
 | Compiler | arm-none-eabi-gcc 15.2 |
 | Optimization | -O3 |
