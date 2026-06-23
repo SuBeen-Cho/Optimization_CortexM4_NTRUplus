@@ -14,11 +14,24 @@ NTRU+ is an NTT-friendly lattice-based KEM. This repository reports the performa
 - m4opt: assembly optimization (asm NTT)
 - m4opt_mem: assembly + memory optimization (asm NTT + stack-memory optimization)
 
+## Measurement Environment
+
+| Item | Value |
+|---|---|
+| Algorithm | NTRU+KEM 768 / 864 / 1152 |
+| Benchmark framework | [pqm4](https://github.com/mupq/pqm4) (commit a24bb4b) |
+| Board (MCU) | NUCLEO-L4R5ZI (STM32L4R5, ARM Cortex-M4F) |
+| Compiler | arm-none-eabi-gcc 15.2 |
+| Optimization | -O3 |
+| Flash / serial | OpenOCD 0.12 / ST-Link virtual COM port |
+| randombytes | STM32 on-chip hardware TRNG (provided by pqm4) |
+| Hash (SHAKE / SHA-2) | pqm4 shared assembly implementation (common to all variants) |
+| Cycle measurement | pqm4 speed.bin, median of 10,000 runs |
+| Stack measurement | pqm4 stack.bin (watermark) |
+
+The random number generator and hash functions are the shared pqm4 implementations used identically by every variant. The measured differences between clean, m4opt, and m4opt_mem therefore come only from the NTT implementation and the memory layout, and the results are comparable on the same basis as other Cortex-M4 results using the same framework.
+
 ## Benchmark Setup
-
-Measurements were taken with [pqm4](https://github.com/mupq/pqm4) (commit a24bb4b), a PQC benchmarking framework for ARM Cortex-M4. The target board is the NUCLEO-L4R5ZI (STM32L4R5, Cortex-M4F); the compiler is arm-none-eabi-gcc 15.2 with -O3. Flashing and serial communication use OpenOCD 0.12 and the ST-Link virtual COM port.
-
-randombytes uses the STM32 on-chip hardware TRNG provided by pqm4, and the hash functions (SHAKE, SHA-2) use pqm4's shared assembly implementation across all variants. The measured differences between variants therefore come only from the NTT and the memory layout.
 
 ### Cycle measurement
 Each operation (key generation, encapsulation, decapsulation) runs on the board through pqm4's speed.bin and is measured with the Cortex-M4 cycle counter. Each operation is run 10,000 times and the median is reported. Encapsulation and decapsulation are constant time and show almost no variance; key generation includes a rejection step (invertibility check), so the median is used.
